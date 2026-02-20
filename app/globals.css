@@ -1,0 +1,71 @@
+/* app/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #0d1525;
+  --text-primary: #c8d6ef;
+  --text-muted: #6b7fa3;
+  --blue: #4f9cf9;
+  --purple: #a78bfa;
+  --green: #34d399;
+  --yellow: #fbbf24;
+  --red: #f87171;
+  --orange: #fb923c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  background-image: linear-gradient(
+    135deg,
+    #0a0e1a 0%,
+    #0d1525 40%,
+    #0a1020 100%
+  );
+  min-height: 100vh;
+  color: var(--text-primary);
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(79, 156, 249, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 156, 249, 0.45);
+}
+
+/* Tabular numbers for financial data */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Table hover */
+tr:hover {
+  transition: background 0.15s ease;
+}
+
+/* Smooth transitions */
+* {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
