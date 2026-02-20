@@ -1,4 +1,4 @@
-# 📊 Priyanshu Portfolio Dashboard
+# 📊  Portfolio Dashboard
 
 A live NSE/BSE stock portfolio tracker built with **Next.js 14**, **TypeScript**, **Tailwind CSS**, and **Node.js** — with real-time price updates every 15 seconds.
 
@@ -120,7 +120,7 @@ http://localhost:3000
 
 ```
 ┌─────────────────────────────────────────────────┐
-│  P  PRIYANSHU PORTFOLIO         ⟳ Refresh  🟢  │
+│  P   PORTFOLIO         ⟳ Refresh  🟢  │
 │     LIVE TRACKER · NSE/BSE · 23 POSITIONS       │
 ├─────────────────────────────────────────────────┤
 │  📊 TOTAL INVESTED  💰 PRESENT   📈 PROFIT      │

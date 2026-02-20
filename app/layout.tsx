@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Priyanshu Portfolio Tracker",
+  title: "Portfolio Tracker",
   description: "Live NSE/BSE Portfolio Dashboard — Real-time stock tracking with P/E, Gain/Loss, Sector grouping",
 };
 

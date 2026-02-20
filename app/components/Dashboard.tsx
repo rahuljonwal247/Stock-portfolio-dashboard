@@ -110,7 +110,7 @@ export default function Dashboard() {
               className="text-sm font-bold tracking-widest"
               style={{ color: "#e2ecff" }}
             >
-              PRIYANSHU PORTFOLIO
+              PORTFOLIO
             </div>
             <div
               className="text-xs tracking-widest hidden md:block"
