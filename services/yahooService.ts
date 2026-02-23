@@ -364,7 +364,7 @@ async function getSingleQuote(
       throw new Error(`No valid price returned (got: ${JSON.stringify(price)})`);
     }
 
-    console.log(`✅ ${yahooSymbol} → ₹${price}`);
+    // console.log(`✅ ${yahooSymbol} → ₹${price}`);
     return { cmp: price, isLive: true, isStale: false };
   } catch (err: any) {
     const fallback = BASE_PRICES[symbol] ?? 0;
