@@ -1,5 +1,6 @@
 // app/components/SectorGroup.tsx
 "use client";
+
 import { useState, useMemo } from "react";
 import StockRow from "./StockRow";
 import GainBadge from "./GainBadge";
@@ -13,21 +14,35 @@ interface Props {
   defaultOpen?: boolean;
 }
 
-const COLUMNS = [
-  { label: "#", align: "left" as const, sortKey: "id" },
-  { label: "STOCK", align: "left" as const, sortKey: "name" },
-  { label: "NSE/BSE", align: "left" as const, sortKey: "symbol" },
-  { label: "BUY ₹", align: "right" as const, sortKey: "purchasePrice" },
-  { label: "QTY", align: "right" as const, sortKey: "qty" },
-  { label: "INVESTED", align: "right" as const, sortKey: "investment" },
-  { label: "WEIGHT", align: "right" as const, sortKey: "portfolioPct" },
-  { label: "CMP ₹", align: "right" as const, sortKey: "cmp" },
-  { label: "PRESENT VAL", align: "right" as const, sortKey: "presentValue" },
-  { label: "GAIN/LOSS", align: "right" as const, sortKey: "gainLoss" },
-  { label: "G/L %", align: "right" as const, sortKey: "gainLossPct" },
-  { label: "P/E", align: "right" as const, sortKey: "pe" },
-  { label: "EPS", align: "right" as const, sortKey: "eps" },
-  { label: "STATUS", align: "left" as const, sortKey: null },
+/**
+ * Extract single stock type safely from SectorSummary
+ */
+type Stock = SectorSummary["stocks"][number];
+
+/**
+ * Strongly typed column definition
+ */
+type Column = {
+  label: string;
+  align: "left" | "right";
+  sortKey: keyof Stock | null;
+};
+
+const COLUMNS: Column[] = [
+  { label: "#", align: "left", sortKey: "id" },
+  { label: "STOCK", align: "left", sortKey: "name" },
+  { label: "NSE/BSE", align: "left", sortKey: "symbol" },
+  { label: "BUY ₹", align: "right", sortKey: "purchasePrice" },
+  { label: "QTY", align: "right", sortKey: "qty" },
+  { label: "INVESTED", align: "right", sortKey: "investment" },
+  { label: "WEIGHT", align: "right", sortKey: "portfolioPct" },
+  { label: "CMP ₹", align: "right", sortKey: "cmp" },
+  { label: "PRESENT VAL", align: "right", sortKey: "presentValue" },
+  { label: "GAIN/LOSS", align: "right", sortKey: "gainLoss" },
+  { label: "G/L %", align: "right", sortKey: "gainLossPct" },
+  { label: "P/E", align: "right", sortKey: "pe" },
+  { label: "EPS", align: "right", sortKey: "eps" },
+  { label: "STATUS", align: "left", sortKey: null },
 ];
 
 export default function SectorGroup({
@@ -37,20 +52,36 @@ export default function SectorGroup({
   defaultOpen = true,
 }: Props) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
-  const [sortKey, setSortKey] = useState<string | null>(null);
+  const [sortKey, setSortKey] = useState<keyof Stock | null>(null);
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
 
+  /**
+   * Fully type-safe sorting (supports numbers + strings)
+   */
   const sortedStocks = useMemo(() => {
     if (!sortKey) return sector.stocks;
+
     return [...sector.stocks].sort((a, b) => {
-      const va = (a as Record<string, unknown>)[sortKey] as number ?? -Infinity;
-      const vb = (b as Record<string, unknown>)[sortKey] as number ?? -Infinity;
-      return sortDir === "asc" ? va - vb : vb - va;
+      const va = a[sortKey];
+      const vb = b[sortKey];
+
+      if (typeof va === "number" && typeof vb === "number") {
+        return sortDir === "asc" ? va - vb : vb - va;
+      }
+
+      if (typeof va === "string" && typeof vb === "string") {
+        return sortDir === "asc"
+          ? va.localeCompare(vb)
+          : vb.localeCompare(va);
+      }
+
+      return 0;
     });
   }, [sector.stocks, sortKey, sortDir]);
 
-  const handleSort = (key: string | null) => {
+  const handleSort = (key: keyof Stock | null) => {
     if (!key) return;
+
     if (sortKey === key) {
       setSortDir((d) => (d === "asc" ? "desc" : "asc"));
     } else {
@@ -101,19 +132,42 @@ export default function SectorGroup({
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-4 text-xs">
             <div className="text-right">
-              <div style={{ color: "#4f7ba3", fontSize: 9, letterSpacing: "0.08em" }}>
+              <div
+                style={{
+                  color: "#4f7ba3",
+                  fontSize: 9,
+                  letterSpacing: "0.08em",
+                }}
+              >
                 INVESTED
               </div>
-              <div style={{ color: "#b0c4d8" }}>₹{fmtInt(sector.totalInvestment)}</div>
+              <div style={{ color: "#b0c4d8" }}>
+                ₹{fmtInt(sector.totalInvestment)}
+              </div>
             </div>
+
             <div className="text-right">
-              <div style={{ color: "#4f7ba3", fontSize: 9, letterSpacing: "0.08em" }}>
+              <div
+                style={{
+                  color: "#4f7ba3",
+                  fontSize: 9,
+                  letterSpacing: "0.08em",
+                }}
+              >
                 PRESENT
               </div>
-              <div style={{ color: "#b0c4d8" }}>₹{fmtInt(sector.totalPresentValue)}</div>
+              <div style={{ color: "#b0c4d8" }}>
+                ₹{fmtInt(sector.totalPresentValue)}
+              </div>
             </div>
           </div>
-          <GainBadge value={sector.gainLoss} pct={sector.gainLossPct} size="sm" />
+
+          <GainBadge
+            value={sector.gainLoss}
+            pct={sector.gainLossPct}
+            size="sm"
+          />
+
           <span style={{ color: "#4f7ba3", fontSize: 11 }}>
             {isOpen ? "▼" : "▶"}
           </span>
@@ -123,18 +177,26 @@ export default function SectorGroup({
       {/* Stock Table */}
       {isOpen && (
         <div className="overflow-x-auto">
-          <table className="w-full" style={{ borderCollapse: "collapse", fontSize: 11 }}>
+          <table
+            className="w-full"
+            style={{ borderCollapse: "collapse", fontSize: 11 }}
+          >
             <thead>
               <tr style={{ background: "rgba(0,0,0,0.25)" }}>
                 {COLUMNS.map((col) => (
                   <th
                     key={col.label}
-                    className={col.sortKey ? "cursor-pointer hover:bg-white/5" : ""}
+                    className={
+                      col.sortKey ? "cursor-pointer hover:bg-white/5" : ""
+                    }
                     onClick={() => handleSort(col.sortKey)}
                     style={{
                       padding: "8px 12px",
                       textAlign: col.align,
-                      color: sortKey === col.sortKey ? sector.color : "#4f7ba3",
+                      color:
+                        sortKey === col.sortKey
+                          ? sector.color
+                          : "#4f7ba3",
                       fontSize: 9,
                       fontWeight: 600,
                       letterSpacing: "0.1em",
@@ -145,9 +207,17 @@ export default function SectorGroup({
                   >
                     {col.label}
                     {col.sortKey && (
-                      <span className="ml-1" style={{ opacity: sortKey === col.sortKey ? 1 : 0.3 }}>
+                      <span
+                        className="ml-1"
+                        style={{
+                          opacity:
+                            sortKey === col.sortKey ? 1 : 0.3,
+                        }}
+                      >
                         {sortKey === col.sortKey
-                          ? sortDir === "asc" ? "↑" : "↓"
+                          ? sortDir === "asc"
+                            ? "↑"
+                            : "↓"
                           : "⇅"}
                       </span>
                     )}
@@ -155,6 +225,7 @@ export default function SectorGroup({
                 ))}
               </tr>
             </thead>
+
             <tbody>
               {sortedStocks.map((stock, i) => (
                 <StockRow

@@ -1,3 +1,413 @@
+// // data/portfolioConfig.ts
+// import type { Stock, SectorName } from "@/types/portfolio";
+
+// interface SectorConfig {
+//   name: SectorName;
+//   color: string;
+//   accent: string;
+//   stocks: Omit<Stock, "sector" | "sectorColor" | "sectorAccent">[];
+// }
+
+// export const SECTOR_CONFIGS: SectorConfig[] = [
+//   {
+//     name: "Financial Sector",
+//     color: "#4f9cf9",
+//     accent: "#1a56db",
+//     stocks: [
+//       {
+//         id: 1,
+//         name: "HDFC Bank",
+//         symbol: "HDFCBANK",
+//         exchange: "NSE",
+//         purchasePrice: 1490,
+//         qty: 50,
+//         pe: 18.69,
+//         eps: 91.02,
+//         marketCap: "₹13,00,795 Cr",
+//         note: null,
+//       },
+//       {
+//         id: 2,
+//         name: "Bajaj Finance",
+//         symbol: "BAJFINANCE",
+//         exchange: "NSE",
+//         purchasePrice: 6466,
+//         qty: 15,
+//         pe: 32.63,
+//         eps: 257.8,
+//         marketCap: "₹5,21,012 Cr",
+//         note: "Exit",
+//       },
+//       {
+//         id: 3,
+//         name: "ICICI Bank",
+//         symbol: "532174",
+//         exchange: "BSE",
+//         purchasePrice: 780,
+//         qty: 84,
+//         pe: 17.68,
+//         eps: 68.72,
+//         marketCap: "₹8,59,583 Cr",
+//         note: null,
+//       },
+//       {
+//         id: 4,
+//         name: "Bajaj Housing",
+//         symbol: "544252",
+//         exchange: "BSE",
+//         purchasePrice: 130,
+//         qty: 504,
+//         pe: 85.72,
+//         eps: 2.53,
+//         marketCap: "₹1,38,017 Cr",
+//         note: null,
+//       },
+//       {
+//         id: 5,
+//         name: "Savani Financials",
+//         symbol: "511577",
+//         exchange: "BSE",
+//         purchasePrice: 24,
+//         qty: 1080,
+//         pe: null,
+//         eps: null,
+//         marketCap: "N/A",
+//         note: null,
+//       },
+//     ],
+//   },
+//   {
+//     name: "Tech Sector",
+//     color: "#a78bfa",
+//     accent: "#7c3aed",
+//     stocks: [
+//       {
+//         id: 1,
+//         name: "Affle India",
+//         symbol: "AFFLE",
+//         exchange: "NSE",
+//         purchasePrice: 1151,
+//         qty: 50,
+//         pe: 55.53,
+//         eps: 26.11,
+//         marketCap: "₹20,489 Cr",
+//         note: null,
+//       },
+//       {
+//         id: 2,
+//         name: "LTI Mindtree",
+//         symbol: "LTIM",
+//         exchange: "NSE",
+//         purchasePrice: 4775,
+//         qty: 16,
+//         pe: 34.69,
+//         eps: 145.92,
+//         marketCap: "₹1,73,004 Cr",
+//         note: null,
+//       },
+//       {
+//         id: 3,
+//         name: "KPIT Tech",
+//         symbol: "542651",
+//         exchange: "BSE",
+//         purchasePrice: 672,
+//         qty: 61,
+//         pe: 46.57,
+//         eps: 27.77,
+//         marketCap: "₹35,073 Cr",
+//         note: "Must exit",
+//       },
+//       {
+//         id: 4,
+//         name: "Tata Tech",
+//         symbol: "544028",
+//         exchange: "BSE",
+//         purchasePrice: 1072,
+//         qty: 63,
+//         pe: 41.68,
+//         eps: 15.88,
+//         marketCap: "₹26,879 Cr",
+//         note: "Must exit",
+//       },
+//       {
+//         id: 5,
+//         name: "BLS E-Services",
+//         symbol: "544107",
+//         exchange: "BSE",
+//         purchasePrice: 232,
+//         qty: 191,
+//         pe: 26.3,
+//         eps: 5.8,
+//         marketCap: "₹1,388 Cr",
+//         note: null,
+//       },
+//       {
+//         id: 6,
+//         name: "Tanla",
+//         symbol: "532790",
+//         exchange: "BSE",
+//         purchasePrice: 1134,
+//         qty: 45,
+//         pe: 11.64,
+//         eps: 39.48,
+//         marketCap: "₹6,041 Cr",
+//         note: null,
+//       },
+//     ],
+//   },
+//   {
+//     name: "Consumer",
+//     color: "#34d399",
+//     accent: "#059669",
+//     stocks: [
+//       {
+//         id: 1,
+//         name: "Dmart",
+//         symbol: "DMART",
+//         exchange: "NSE",
+//         purchasePrice: 3777,
+//         qty: 27,
+//         pe: 82.63,
+//         eps: 41.75,
+//         marketCap: "₹2,24,584 Cr",
+//         note: "Must exit",
+//       },
+//       {
+//         id: 2,
+//         name: "Tata Consumer",
+//         symbol: "532540",
+//         exchange: "BSE",
+//         purchasePrice: 845,
+//         qty: 90,
+//         pe: 26.56,
+//         eps: 134.77,
+//         marketCap: "₹12,97,066 Cr",
+//         note: null,
+//       },
+//       {
+//         id: 3,
+//         name: "Pidilite",
+//         symbol: "500331",
+//         exchange: "BSE",
+//         purchasePrice: 2376,
+//         qty: 36,
+//         pe: 71.13,
+//         eps: 38.36,
+//         marketCap: "₹1,38,857 Cr",
+//         note: "Must exit",
+//       },
+//     ],
+//   },
+//   {
+//     name: "Power",
+//     color: "#fbbf24",
+//     accent: "#d97706",
+//     stocks: [
+//       {
+//         id: 1,
+//         name: "Tata Power",
+//         symbol: "500400",
+//         exchange: "BSE",
+//         purchasePrice: 224,
+//         qty: 225,
+//         pe: 29.36,
+//         eps: 11.94,
+//         marketCap: "₹1,12,140 Cr",
+//         note: null,
+//       },
+//       {
+//         id: 2,
+//         name: "KPI Green",
+//         symbol: "542323",
+//         exchange: "BSE",
+//         purchasePrice: 875,
+//         qty: 50,
+//         pe: 29.26,
+//         eps: 13.75,
+//         marketCap: "₹7,915 Cr",
+//         note: "Must exit",
+//       },
+//       {
+//         id: 3,
+//         name: "Suzlon",
+//         symbol: "532667",
+//         exchange: "BSE",
+//         purchasePrice: 44,
+//         qty: 450,
+//         pe: 61.25,
+//         eps: 0.84,
+//         marketCap: "₹70,108 Cr",
+//         note: "Must exit",
+//       },
+//       {
+//         id: 4,
+//         name: "Gensol",
+//         symbol: "542851",
+//         exchange: "BSE",
+//         purchasePrice: 998,
+//         qty: 45,
+//         pe: 39.51,
+//         eps: 5.57,
+//         marketCap: "₹6,985 Cr",
+//         note: "Must exit",
+//       },
+//     ],
+//   },
+//   {
+//     name: "Pipe Sector",
+//     color: "#f87171",
+//     accent: "#dc2626",
+//     stocks: [
+//       {
+//         id: 1,
+//         name: "Hariom Pipes",
+//         symbol: "543517",
+//         exchange: "BSE",
+//         purchasePrice: 580,
+//         qty: 60,
+//         pe: 17.98,
+//         eps: 19.78,
+//         marketCap: "₹1,094 Cr",
+//         note: "Must exit",
+//       },
+//       {
+//         id: 2,
+//         name: "Astral",
+//         symbol: "ASTRAL",
+//         exchange: "NSE",
+//         purchasePrice: 1517,
+//         qty: 56,
+//         pe: 67.13,
+//         eps: 19.59,
+//         marketCap: "₹35,397 Cr",
+//         note: null,
+//       },
+//       {
+//         id: 3,
+//         name: "Polycab",
+//         symbol: "542652",
+//         exchange: "BSE",
+//         purchasePrice: 2818,
+//         qty: 28,
+//         pe: 40.91,
+//         eps: 121.97,
+//         marketCap: "₹75,253 Cr",
+//         note: null,
+//       },
+//     ],
+//   },
+//   {
+//     name: "Others",
+//     color: "#fb923c",
+//     accent: "#ea580c",
+//     stocks: [
+//       {
+//         id: 1,
+//         name: "Clean Science",
+//         symbol: "543318",
+//         exchange: "BSE",
+//         purchasePrice: 1610,
+//         qty: 32,
+//         pe: 50.37,
+//         eps: 24.52,
+//         marketCap: "₹13,158 Cr",
+//         note: "Must exit",
+//       },
+//       {
+//         id: 2,
+//         name: "Deepak Nitrite",
+//         symbol: "506401",
+//         exchange: "BSE",
+//         purchasePrice: 2248,
+//         qty: 27,
+//         pe: 41.86,
+//         eps: 37.26,
+//         marketCap: "₹16,138 Cr",
+//         note: null,
+//       },
+//       {
+//         id: 3,
+//         name: "Fine Organic",
+//         symbol: "541557",
+//         exchange: "BSE",
+//         purchasePrice: 4284,
+//         qty: 16,
+//         pe: 41.86,
+//         eps: 37.26,
+//         marketCap: "₹16,138 Cr",
+//         note: null,
+//       },
+//       {
+//         id: 4,
+//         name: "Gravita",
+//         symbol: "533282",
+//         exchange: "BSE",
+//         purchasePrice: 2037,
+//         qty: 8,
+//         pe: 41.86,
+//         eps: 37.26,
+//         marketCap: "₹16,138 Cr",
+//         note: null,
+//       },
+//       {
+//         id: 5,
+//         name: "SBI Life",
+//         symbol: "540719",
+//         exchange: "BSE",
+//         purchasePrice: 1197,
+//         qty: 49,
+//         pe: null,
+//         eps: -5.82,
+//         marketCap: "₹1,824 Cr",
+//         note: "Must exit",
+//       },
+//     ],
+//   },
+// ];
+
+// // Base prices used for simulation / fallback
+// export const BASE_PRICES: Record<string, number> = {
+//   HDFCBANK: 1700.15,
+//   BAJFINANCE: 8419.6,
+//   "532174": 1215.5,
+//   "544252": 112.85,
+//   "511577": 14.86,
+//   AFFLE: 1459.6,
+//   LTIM: 4793.8,
+//   "542651": 1293.1,
+//   "544028": 662,
+//   "544107": 152.9,
+//   "532790": 449.5,
+//   DMART: 3451.1,
+//   "532540": 961.1,
+//   "500331": 2730,
+//   "500400": 351,
+//   "542323": 402.4,
+//   "532667": 51.36,
+//   "542851": 372.6,
+//   "543517": 355.75,
+//   ASTRAL: 1317.6,
+//   "542652": 5000,
+//   "543318": 1237.45,
+//   "506401": 1927.9,
+//   "541557": 3743,
+//   "533282": 1614.2,
+//   "540719": 1405.45,
+// };
+
+// // Flat list of all stocks
+// export const ALL_STOCKS: Stock[] = SECTOR_CONFIGS.flatMap((sector) =>
+//   sector.stocks.map((s) => ({
+//     ...s,
+//     sector: sector.name,
+//     sectorColor: sector.color,
+//     sectorAccent: sector.accent,
+//   }))
+// );
+
+
+
+
 // data/portfolioConfig.ts
 import type { Stock, SectorName } from "@/types/portfolio";
 
@@ -17,7 +427,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 1,
         name: "HDFC Bank",
-        symbol: "HDFCBANK",
+        symbol: "HDFCBANK.NS",
         exchange: "NSE",
         purchasePrice: 1490,
         qty: 50,
@@ -29,7 +439,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 2,
         name: "Bajaj Finance",
-        symbol: "BAJFINANCE",
+        symbol: "BAJFINANCE.NS",
         exchange: "NSE",
         purchasePrice: 6466,
         qty: 15,
@@ -40,8 +450,8 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       },
       {
         id: 3,
-        name: "ICICI Bank",
-        symbol: "532174",
+        name: "ICICI Lombard",
+        symbol: "ICICIGI.BO",
         exchange: "BSE",
         purchasePrice: 780,
         qty: 84,
@@ -53,7 +463,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 4,
         name: "Bajaj Housing",
-        symbol: "544252",
+        symbol: "BAJAJHFL.BO",
         exchange: "BSE",
         purchasePrice: 130,
         qty: 504,
@@ -62,20 +472,10 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
         marketCap: "₹1,38,017 Cr",
         note: null,
       },
-      {
-        id: 5,
-        name: "Savani Financials",
-        symbol: "511577",
-        exchange: "BSE",
-        purchasePrice: 24,
-        qty: 1080,
-        pe: null,
-        eps: null,
-        marketCap: "N/A",
-        note: null,
-      },
+     
     ],
   },
+
   {
     name: "Tech Sector",
     color: "#a78bfa",
@@ -84,7 +484,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 1,
         name: "Affle India",
-        symbol: "AFFLE",
+        symbol: "AFFLE.NS",
         exchange: "NSE",
         purchasePrice: 1151,
         qty: 50,
@@ -96,7 +496,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 2,
         name: "LTI Mindtree",
-        symbol: "LTIM",
+        symbol: "LTIM.NS",
         exchange: "NSE",
         purchasePrice: 4775,
         qty: 16,
@@ -108,7 +508,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 3,
         name: "KPIT Tech",
-        symbol: "542651",
+        symbol: "KPITTECH.BO",
         exchange: "BSE",
         purchasePrice: 672,
         qty: 61,
@@ -120,7 +520,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 4,
         name: "Tata Tech",
-        symbol: "544028",
+        symbol: "TATATECH.BO",
         exchange: "BSE",
         purchasePrice: 1072,
         qty: 63,
@@ -132,7 +532,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 5,
         name: "BLS E-Services",
-        symbol: "544107",
+        symbol: "BLSE.BO",
         exchange: "BSE",
         purchasePrice: 232,
         qty: 191,
@@ -144,7 +544,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 6,
         name: "Tanla",
-        symbol: "532790",
+        symbol: "TANLA.BO",
         exchange: "BSE",
         purchasePrice: 1134,
         qty: 45,
@@ -155,6 +555,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       },
     ],
   },
+
   {
     name: "Consumer",
     color: "#34d399",
@@ -163,7 +564,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 1,
         name: "Dmart",
-        symbol: "DMART",
+        symbol: "DMART.NS",
         exchange: "NSE",
         purchasePrice: 3777,
         qty: 27,
@@ -175,7 +576,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 2,
         name: "Tata Consumer",
-        symbol: "532540",
+        symbol: "TATACONSUM.BO",
         exchange: "BSE",
         purchasePrice: 845,
         qty: 90,
@@ -187,7 +588,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 3,
         name: "Pidilite",
-        symbol: "500331",
+        symbol: "PIDILITIND.BO",
         exchange: "BSE",
         purchasePrice: 2376,
         qty: 36,
@@ -198,6 +599,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       },
     ],
   },
+
   {
     name: "Power",
     color: "#fbbf24",
@@ -206,7 +608,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 1,
         name: "Tata Power",
-        symbol: "500400",
+        symbol: "TATAPOWER.BO",
         exchange: "BSE",
         purchasePrice: 224,
         qty: 225,
@@ -218,7 +620,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 2,
         name: "KPI Green",
-        symbol: "542323",
+        symbol: "KPIGREEN.BO",
         exchange: "BSE",
         purchasePrice: 875,
         qty: 50,
@@ -230,7 +632,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 3,
         name: "Suzlon",
-        symbol: "532667",
+        symbol: "SUZLON.BO",
         exchange: "BSE",
         purchasePrice: 44,
         qty: 450,
@@ -242,7 +644,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 4,
         name: "Gensol",
-        symbol: "542851",
+        symbol: "GENSOL.BO",
         exchange: "BSE",
         purchasePrice: 998,
         qty: 45,
@@ -253,6 +655,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       },
     ],
   },
+
   {
     name: "Pipe Sector",
     color: "#f87171",
@@ -261,7 +664,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 1,
         name: "Hariom Pipes",
-        symbol: "543517",
+        symbol: "HARIOMPIPE.BO",
         exchange: "BSE",
         purchasePrice: 580,
         qty: 60,
@@ -273,7 +676,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 2,
         name: "Astral",
-        symbol: "ASTRAL",
+        symbol: "ASTRAL.NS",
         exchange: "NSE",
         purchasePrice: 1517,
         qty: 56,
@@ -285,7 +688,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 3,
         name: "Polycab",
-        symbol: "542652",
+        symbol: "POLYCAB.BO",
         exchange: "BSE",
         purchasePrice: 2818,
         qty: 28,
@@ -296,6 +699,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       },
     ],
   },
+
   {
     name: "Others",
     color: "#fb923c",
@@ -304,8 +708,8 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 1,
         name: "Clean Science",
-        symbol: "543318",
-        exchange: "BSE",
+        symbol: "CLEAN.NS",
+        exchange: "NSE",
         purchasePrice: 1610,
         qty: 32,
         pe: 50.37,
@@ -316,7 +720,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 2,
         name: "Deepak Nitrite",
-        symbol: "506401",
+        symbol: "DEEPAKNTR.BO",
         exchange: "BSE",
         purchasePrice: 2248,
         qty: 27,
@@ -328,7 +732,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 3,
         name: "Fine Organic",
-        symbol: "541557",
+        symbol: "FINEORG.BO",
         exchange: "BSE",
         purchasePrice: 4284,
         qty: 16,
@@ -340,7 +744,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 4,
         name: "Gravita",
-        symbol: "533282",
+        symbol: "GRAVITA.BO",
         exchange: "BSE",
         purchasePrice: 2037,
         qty: 8,
@@ -352,8 +756,8 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
       {
         id: 5,
         name: "SBI Life",
-        symbol: "540719",
-        exchange: "BSE",
+        symbol: "SBILIFE.NS",
+        exchange: "NSE",
         purchasePrice: 1197,
         qty: 49,
         pe: null,
@@ -365,7 +769,7 @@ export const SECTOR_CONFIGS: SectorConfig[] = [
   },
 ];
 
-// Base prices used for simulation / fallback
+
 export const BASE_PRICES: Record<string, number> = {
   HDFCBANK: 1700.15,
   BAJFINANCE: 8419.6,

@@ -110,5 +110,7 @@ export async function getFundamentalsBatch(
     );
   }
 
+  console.log("result",results);
+
   return results;
 }
